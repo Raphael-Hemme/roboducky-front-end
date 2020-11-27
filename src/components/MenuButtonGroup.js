@@ -1,24 +1,21 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core';
-
+import EditMenu from './EditMenu'
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  paper: {
+  button: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
 }));
 
-
-const SingleColumnLayout = ({children}) => {
-
+const MenuButtonGroup = () => {
   const classes = useStyles();
 
   return (
@@ -29,18 +26,21 @@ const SingleColumnLayout = ({children}) => {
         direction="row"
         justify="center"
         alignItems="center"
-        spacing={3}
+        spacing={2}
       >
-        <Grid item xs={12} lg={2}>
+        <Grid item xs={4} md={12} className={classes.button} variant="outlined">
+          <EditMenu />
         </Grid>
-        <Grid item xs={12} lg={6} container justify="center" alignItems="flex-start">
-          {children}
+        <Grid item xs={4} md={12} className={classes.button} variant="outlined">
+          <EditMenu />
         </Grid>
-        <Grid item xs={12} lg={2}>
+        <Grid item xs={4} md={12} className={classes.button} variant="outlined">
+          <EditMenu />
         </Grid>
       </Grid>
       </div>
   );
 }
 
-export default SingleColumnLayout;
+
+export default MenuButtonGroup;
