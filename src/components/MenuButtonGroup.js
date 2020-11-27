@@ -1,7 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core';
-import EditMenu from './EditMenu'
+import EditMenu from './EditMenu';
+import QuackButton from './QuackButton';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +36,7 @@ const MenuButtonGroup = () => {
           <EditMenu />
         </Grid>
         <Grid item xs={4} md={12} className={classes.button} variant="outlined">
-          <EditMenu />
+          <QuackButton />
         </Grid>
       </Grid>
       </div>

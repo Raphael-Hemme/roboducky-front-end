@@ -10,10 +10,14 @@ import RoboduckyVisual from './components/RoboDuckyVisual';
 import Monolog from './components/Monolog';
 import MenuButtonGroup from './components/MenuButtonGroup';
 
+
 const App = () => {
   return (
     <div className="App">
       <Switch>
+        <Route path="/add-tags">
+          <ThreeColumnLayout><RoboduckyVisual key='leftComp'/><Monolog key='centerComp'/><MenuButtonGroup key='rightComp'/></ThreeColumnLayout>
+        </Route>
         <Route path="/review-and-options">
           <ThreeColumnLayout><RoboduckyVisual key='leftComp'/><Monolog key='centerComp'/><MenuButtonGroup key='rightComp'/></ThreeColumnLayout>
         </Route>
