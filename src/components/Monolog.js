@@ -3,16 +3,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: "100%",
-      height: "100%",
-    },
+  monologContainer: {
+    display: "flex",
+    flexWrap: "wrap"
   },
-  textInput: {
-    width: "100%",
-    height: "100%",
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: "23ch"
+  },
+  input: {
+    height: "80vh",
+    fontSize: "2em"
   }
 }));
 
@@ -25,21 +27,26 @@ const Monolog = () => {
   };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <div className={classes.monologContainer} >
 
-      <div>
-        <TextField
-          id="outlined-multiline-static"
-          className={classes.textInput}
-          label="Your Thoughts"
-          multiline
-          rows={4}
-          defaultValue="..."
-          variant="outlined"
-          
-        />
-      </div>
-    </form>
+      <form noValidate autoComplete="off">
+
+      <TextField
+        id="monologContainer"
+        label="Your Thoughts"
+        variant="outlined"
+        style={{ margin: 8 }}
+        placeholder="..."
+        helperText="What are you struggling with"
+        fullWidth
+        margin="normal"
+        InputLabelProps={{
+          shrink: true
+        }}
+        inputProps={{ className: classes.input }}
+      />
+      </form>
+    </div>
   );
 }
 
