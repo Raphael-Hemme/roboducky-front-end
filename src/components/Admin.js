@@ -9,21 +9,8 @@ import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { userContext } from "./utils/auth";
+import { userContext } from "../utils/auth";
 import Paper from '@material-ui/core/Paper';
-
-const Copyright = () => {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="http://www.google.com">
-        Electric Sheep 🐑⚡
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-};
 
 const useStyles = makeStyles((theme) => ({
   "@global": {

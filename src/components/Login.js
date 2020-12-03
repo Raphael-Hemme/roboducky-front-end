@@ -1,7 +1,7 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseLine from '@material-ui/coreCssBaseline';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import OfflineBoltIcon from '@material-ui/icons/OfflineBolt';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import roboducky from 'src/roboducky-patient_listener.png'
+import roboduckyListeningImage from '../roboducky-patient_listener.png';
 import { light } from '@material-ui/core/styles/createPalette';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: `url(${roboducky})`,
+    backgroundImage: `url(${roboduckyListeningImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
     backgroundSize: 'cover',
@@ -50,9 +50,8 @@ export default function SignIn({onLogin, onSetCredentials}) {
 
   return (
     <Grid container component="main" className={classes.root}>
-      <CssBaseLine />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <CssBaseline />
+      <Grid item xs={12} sm={12} md={12} component={Paper} elevation={0} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <OfflineBoltIcon />

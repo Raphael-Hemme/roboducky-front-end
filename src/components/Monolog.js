@@ -1,53 +1,92 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import { light } from '@material-ui/core/styles/createPalette';
 
 const useStyles = makeStyles((theme) => ({
-  monologContainer: {
-    display: "flex",
-    flexWrap: "wrap"
+  root: {
+    height: '100vh',
   },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: "23ch"
+  paper: {
+    margin: theme.spacing(8, 4),
+    display: 'flex',
+    flexDirection: 'column',
+    alighItems: 'center',
   },
-  input: {
-    height: "80vh",
-    fontSize: "2em"
+  form: {
+    width: '100%',
+    marginTop: theme.spacing(1),
+  },
+  heading: {
+    color: theme.palette.primary.main
   }
 }));
 
-const Monolog = () => {
+const Monolog = ({ onMonolog, monologText }) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState('Controlled');
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
 
   return (
-    <div className={classes.monologContainer} >
+    <Grid container component="main" className={classes.root}>
+      <CssBaseline />
+      <Grid item xs={12} sm={12} md={12} component={Paper} elevation={0} square>
+        <div className={classes.paper}>
+        
+          <Typography component="h1" variant="h5" className={classes.heading}>
+            I'm Listening
+          </Typography>
+          <form className={classes.form} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              multiline
+              rows="7"
+              fullWidth
+              id="monolog"
+              label="Your Thoughts"
+              name="monolog"
+              autoFocus
+              onChange={e => onMonolog(e)}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="password"
+              name="password"
+              label="Password"
+              type="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              onClick={() => console.log(monologText)}
+              fullWidth
+              variant="contained"
+              color="primary"
+            >
+              Sign In
+            </Button>
 
-      <form noValidate autoComplete="off">
-
-      <TextField
-        id="monologContainer"
-        label="Your Thoughts"
-        variant="outlined"
-        style={{ margin: 8 }}
-        placeholder="..."
-        helperText="What are you struggling with"
-        fullWidth
-        margin="normal"
-        InputLabelProps={{
-          shrink: true
-        }}
-        inputProps={{ className: classes.input }}
-      />
-      </form>
-    </div>
-  );
+          </form>
+        </div>
+      </Grid>
+    </Grid>
+  )
 }
 
 export default Monolog;

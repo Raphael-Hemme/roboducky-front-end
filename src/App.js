@@ -13,9 +13,12 @@ import MenuButtonGroup from './components/MenuButtonGroup';
 import Login from './components/Login';
 import Admin from './components/Admin';
 import ProtectedRoute from './components/ProtectedRoute';
+import UnknownWelcome from './components/UnknownWelcome';
 
 
 const App = () => {
+
+  // useState and handlers for auth / login / logout
 
   const [ credentials, setCredentials ] = useState(null);
   const history = useHistory();
@@ -37,6 +40,14 @@ const App = () => {
     history.push('/login')
   }
 
+  // use state for monolog - this is the useState for the conversation description.
+  const [ monolog, setMonolog ] = useState(null);
+
+  const handleSetMonolog = (e) => {
+    setMonolog(e.target.value)
+//    console.log(e.target.value)
+  }
+
   return (
     <div className="App">
       <Switch>
@@ -45,16 +56,16 @@ const App = () => {
         </Route>
         <ProtectedRoute path="/admin" component={Admin} onLogout={handleLogout} />
         <Route path="/add-tags">
-          <ThreeColumnLayout><RoboduckyVisual key='leftComp'/><Monolog key='centerComp'/><MenuButtonGroup key='rightComp'/></ThreeColumnLayout>
+          <ThreeColumnLayout><RoboduckyVisual key='leftComp' size="200"/><Monolog key='centerComp'/><MenuButtonGroup key='rightComp'/></ThreeColumnLayout>
         </Route>
         <Route path="/review-and-options">
-          <ThreeColumnLayout><RoboduckyVisual key='leftComp'/><Monolog key='centerComp'/><MenuButtonGroup key='rightComp'/></ThreeColumnLayout>
+          <ThreeColumnLayout><RoboduckyVisual key='leftComp' size="200"/><Monolog key='centerComp' onMonolog={handleSetMonolog} monologText={monolog} /><MenuButtonGroup key='rightComp'/></ThreeColumnLayout>
         </Route>
         <Route path="/patiently-listening">
           <SingleColumnLayout><RoboduckyVisual key='visual'/></SingleColumnLayout>
         </Route>
         <Route path="/">
-          <SingleColumnLayout><Redirect to="/login" /></SingleColumnLayout>
+          <SingleColumnLayout><UnknownWelcome /></SingleColumnLayout>
         </Route>
       </Switch>
       
