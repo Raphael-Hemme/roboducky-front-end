@@ -1,17 +1,14 @@
 import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+
 import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
+
 
 
 import roboduckyListeningImage from '../roboducky-patient_listener.png';
 
+let imgSize = 200;
 
 
 
@@ -20,14 +17,16 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   cover: {
-    width: 200,
-    height: 200,
+    width: imgSize,
+    height: imgSize,
   },
 
 }));
 
 
-const RoboduckyVisual = () => {
+const RoboduckyVisual = ({size}) => {
+  
+  imgSize = Number(size);
 
   const classes = useStyles();
 
