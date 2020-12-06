@@ -5,8 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -67,7 +65,7 @@ const ThreeColumnLayout = ({children}) => {
             {componentLeftColumn}
           </Grid>
         </Grid>
-        <Grid item xs={12} lg={6} container direction="column" alignItems="center" justify="flex-start" style={{height: '500px'}}>
+        <Grid item xs={12} lg={6} container direction="column" alignItems="center" justify="flex-start">
           <Grid item>
             {componentCenterColumn}
           </Grid>
@@ -83,3 +81,5 @@ const ThreeColumnLayout = ({children}) => {
 }
 
 export default ThreeColumnLayout;
+
+// removed from Grid item (center): style={{height: '500px'}}

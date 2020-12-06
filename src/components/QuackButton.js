@@ -10,15 +10,23 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const QuackButton = () => {
+const QuackButton = ({monologText, currentSolution, currentTags, currentMood}) => {
   const classes = useStyles();
+
+  const loggingFuntion = () => {
+    console.log("your Issue: ", monologText)
+    console.log("your Solution: ", currentSolution)
+    console.log("your Tags: ", currentTags)
+    console.log("your Mood: ", currentMood)
+  }
 
   return (
       <Button
         variant="contained"
         color="primary"
         className={classes.buttonStyle}
-        startIcon={<SaveIcon />}
+        // startIcon={<SaveIcon />}
+        onClick={() => loggingFuntion()}
       >
         Quack!
       </Button>

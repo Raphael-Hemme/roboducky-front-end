@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MenuButtonGroup = () => {
+const MenuButtonGroup = ({ onMonolog, monologText, onCurrentSolution, currentSolution, onCurrentTags, currentTags, onCurrentMood, currentMood}) => {
   const classes = useStyles();
 
   return (
@@ -36,7 +36,16 @@ const MenuButtonGroup = () => {
           <EditMenu />
         </Grid>
         <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
-          <QuackButton />
+          <QuackButton 
+            onMonolog={onMonolog}
+            monologText={monologText}
+            onCurrentSolution={onCurrentSolution}
+            currentSolution={currentSolution}
+            onCurrentTags={onCurrentTags}
+            currentTags={currentTags}
+            onCurrentMood={onCurrentMood}
+            currentMood={currentMood}
+            />
         </Grid>
       </Grid>
       </div>
