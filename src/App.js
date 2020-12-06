@@ -14,9 +14,14 @@ import Login from './components/Login';
 import Admin from './components/Admin';
 import ProtectedRoute from './components/ProtectedRoute';
 import UnknownWelcome from './components/UnknownWelcome';
+import ConversationDetails from './components/ConversationDetails';
+
+import ConversationContext from './contexts/ConversationContext';
+
 
 
 const App = () => {
+
 
   // useState and handlers for auth / login / logout
 
@@ -49,27 +54,32 @@ const App = () => {
   }
 
   return (
-    <div className="App">
-      <Switch>
-        <Route path="/login">
-          <SingleColumnLayout><Login onLogin={handleLogin} onSetCredentials={handleSetCredentials} /></SingleColumnLayout>
-        </Route>
-        <ProtectedRoute path="/admin" component={Admin} onLogout={handleLogout} />
-        <Route path="/add-tags">
-          <ThreeColumnLayout><RoboduckyVisual key='leftComp' size="200"/><Monolog key='centerComp'/><MenuButtonGroup key='rightComp'/></ThreeColumnLayout>
-        </Route>
-        <Route path="/review-and-options">
-          <ThreeColumnLayout><RoboduckyVisual key='leftComp' size="200"/><Monolog key='centerComp' onMonolog={handleSetMonolog} monologText={monolog} /><MenuButtonGroup key='rightComp'/></ThreeColumnLayout>
-        </Route>
-        <Route path="/patiently-listening">
-          <SingleColumnLayout><RoboduckyVisual key='visual'/></SingleColumnLayout>
-        </Route>
-        <Route path="/">
-          <SingleColumnLayout><UnknownWelcome /></SingleColumnLayout>
-        </Route>
-      </Switch>
-      
-    </div>
+    //<ConversationContext.Provider>
+      <div className="App">
+        <Switch>
+          <Route path="/login">
+            <SingleColumnLayout><Login onLogin={handleLogin} onSetCredentials={handleSetCredentials} /></SingleColumnLayout>
+          </Route>
+          <ProtectedRoute path="/admin" component={Admin} onLogout={handleLogout} />
+          <Route path="/add-tags">
+            <ThreeColumnLayout><RoboduckyVisual key='leftComp' size="200"/><Monolog key='centerComp'/><MenuButtonGroup key='rightComp'/></ThreeColumnLayout>
+          </Route>
+          <Route path="/review-and-options">
+            <ThreeColumnLayout><RoboduckyVisual key='leftComp' size="200"/><Monolog key='centerComp' onMonolog={handleSetMonolog} monologText={monolog} /><MenuButtonGroup key='rightComp'/></ThreeColumnLayout>
+          </Route>
+          <Route path="/conversation-details">
+            <ThreeColumnLayout><RoboduckyVisual key='leftComp' size="200"/><ConversationDetails key='centerComp' /><MenuButtonGroup key='rightComp'/></ThreeColumnLayout>
+          </Route>
+          <Route path="/patiently-listening">
+            <SingleColumnLayout><RoboduckyVisual key='visual'/></SingleColumnLayout>
+          </Route>
+          <Route path="/">
+            <SingleColumnLayout><UnknownWelcome /></SingleColumnLayout>
+          </Route>
+        </Switch>
+        
+      </div>
+    //</ConversationContext.Provider>
   );
 }
 

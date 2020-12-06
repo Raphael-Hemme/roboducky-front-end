@@ -62,17 +62,17 @@ const ThreeColumnLayout = ({children}) => {
   return (
     <div className={classes.root}>
       <Grid container spacing={2} justify="center">
-        <Grid item xs={12} md={2} container direction="column" alignItems="center" justify="center">
+        <Grid item xs={12} lg={2} container direction="column" alignItems="center" justify="center">
           <Grid item>
             {componentLeftColumn}
           </Grid>
         </Grid>
-        <Grid item xs={12} md={6} container direction="column" alignItems="center" justify="flex-start" style={{height: '500px'}}>
+        <Grid item xs={12} lg={6} container direction="column" alignItems="center" justify="flex-start" style={{height: '500px'}}>
           <Grid item>
             {componentCenterColumn}
           </Grid>
         </Grid>
-        <Grid item xs={12} md={2} container direction="column" alignItems="center" justify="center">
+        <Grid item xs={12} lg={2} container direction="column" alignItems="center" justify="center">
           <Grid item>
             {componentRightColumn}
           </Grid>

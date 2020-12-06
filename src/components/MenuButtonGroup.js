@@ -29,13 +29,13 @@ const MenuButtonGroup = () => {
         alignItems="center"
         spacing={2}
       >
-        <Grid item xs={4} md={12} className={classes.button} variant="outlined">
+        <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
           <EditMenu />
         </Grid>
-        <Grid item xs={4} md={12} className={classes.button} variant="outlined">
+        <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
           <EditMenu />
         </Grid>
-        <Grid item xs={4} md={12} className={classes.button} variant="outlined">
+        <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
           <QuackButton />
         </Grid>
       </Grid>
