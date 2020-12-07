@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react';
 import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
 
-import { login, logout } from './utils/auth'
+import { login, logout, setAuthHeaders, saveConversation } from './utils/auth'
 
 // component imports
 import EditMenu from './components/EditMenu';
@@ -13,8 +13,9 @@ import MenuButtonGroup from './components/MenuButtonGroup';
 import Login from './components/Login';
 import Admin from './components/Admin';
 import ProtectedRoute from './components/ProtectedRoute';
-import UnknownWelcome from './components/UnknownWelcome';
+import GeneralWelcome from './components/GeneralWelcome';
 import ConversationDetails from './components/ConversationDetails';
+import NotFound from './components/NotFound';
 
 import ConversationContext from './contexts/ConversationContext';
 
@@ -26,6 +27,7 @@ const App = () => {
   // useState and handlers for auth / login / logout
 
   const [ credentials, setCredentials ] = useState(null);
+
   const history = useHistory();
 
   const handleSetCredentials = (e) => {
@@ -37,7 +39,7 @@ const App = () => {
 
   const handleLogin = async () => {
     await login(credentials)
-    history.push('/admin')
+    history.push('/review-and-options')
   }
 
   const handleLogout = () => {
@@ -71,6 +73,15 @@ const App = () => {
 //    console.log(e.target.value)
   }
 
+  const handleSaveConversation = () => {
+    saveConversation({
+      monolog,
+      currentSolution,
+      currentTags,
+      currentMood,
+    })
+  }
+
   return (
     //<ConversationContext.Provider>
       <div className="App">
@@ -82,7 +93,7 @@ const App = () => {
           <Route path="/add-tags">
             <ThreeColumnLayout><RoboduckyVisual key='leftComp' size="200"/><MonologTwo key='centerComp'/><MenuButtonGroup key='rightComp'/></ThreeColumnLayout>
           </Route>
-          <Route path="/review-and-options">
+          <ProtectedRoute path="/review-and-options">
             <ThreeColumnLayout>
               <RoboduckyVisual key='leftComp' size="200"/>
               <MonologTwo 
@@ -96,7 +107,8 @@ const App = () => {
                 onCurrentMood={handleSetCurrentMood}
                 currentMood={currentMood}
               />
-              <MenuButtonGroup key='rightComp' 
+              <MenuButtonGroup 
+                key='rightComp' 
                 onMonolog={handleSetMonolog}
                 monologText={monolog}
                 onCurrentSolution={handleSetCurrentSolution}
@@ -104,17 +116,45 @@ const App = () => {
                 onCurrentTags={handleSetCurrentTags}
                 currentTags={currentTags}
                 onCurrentMood={handleSetCurrentMood}
-                currentMood={currentMood}/>
+                currentMood={currentMood}
+                onSaveConversation={handleSaveConversation}
+                onLogout={handleLogout}
+              />
             </ThreeColumnLayout>
-          </Route>
+          </ProtectedRoute>
           <Route path="/conversation-details">
-            <ThreeColumnLayout><RoboduckyVisual key='leftComp' size="200"/><ConversationDetails key='centerComp' /><MenuButtonGroup key='rightComp'/></ThreeColumnLayout>
+            <ThreeColumnLayout>
+              <RoboduckyVisual key='leftComp' size="200"/>
+              <ConversationDetails 
+                key='centerComp'
+                monologText={monolog}
+                currentSolution={currentSolution}
+                currentTags={currentTags}
+                currentMood={currentMood}
+                />
+              <MenuButtonGroup 
+                key='rightComp'
+                onMonolog={handleSetMonolog}
+                monologText={monolog}
+                onCurrentSolution={handleSetCurrentSolution}
+                currentSolution={currentSolution}
+                onCurrentTags={handleSetCurrentTags}
+                currentTags={currentTags}
+                onCurrentMood={handleSetCurrentMood}
+                currentMood={currentMood}
+                onSaveConversation={handleSaveConversation}
+                onLogout={handleLogout}
+              />
+            </ThreeColumnLayout>
           </Route>
           <Route path="/patiently-listening">
             <SingleColumnLayout><RoboduckyVisual key='visual'/></SingleColumnLayout>
           </Route>
+          <Route path="/404">
+            <SingleColumnLayout><NotFound /></SingleColumnLayout>
+          </Route>
           <Route path="/">
-            <SingleColumnLayout><UnknownWelcome /></SingleColumnLayout>
+            <SingleColumnLayout><GeneralWelcome /></SingleColumnLayout>
           </Route>
         </Switch>
         

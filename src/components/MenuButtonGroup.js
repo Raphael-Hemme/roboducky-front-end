@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MenuButtonGroup = ({ onMonolog, monologText, onCurrentSolution, currentSolution, onCurrentTags, currentTags, onCurrentMood, currentMood}) => {
+const MenuButtonGroup = ({ onMonolog, monologText, onCurrentSolution, currentSolution, onCurrentTags, currentTags, onCurrentMood, currentMood, onSaveConversation }) => {
   const classes = useStyles();
 
   return (
@@ -45,6 +45,7 @@ const MenuButtonGroup = ({ onMonolog, monologText, onCurrentSolution, currentSol
             currentTags={currentTags}
             onCurrentMood={onCurrentMood}
             currentMood={currentMood}
+            onSaveConversation={onSaveConversation}
             />
         </Grid>
       </Grid>

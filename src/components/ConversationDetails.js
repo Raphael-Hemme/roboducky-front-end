@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -16,19 +17,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ConversationDetails = () => {
+const ConversationDetails = ({ monologText, currentSolution, currentTags, currentMood }) => {
   const classes = useStyles();
+
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper} variant="outlined">
         <Grid container spacing={3}>
+
           <Grid item xs={6}>
             <Paper className={classes.paper} elevation={0}></Paper>
           </Grid>
+
           <Grid item xs={6}>
             <Paper className={classes.paper} elevation={0}><Typography variant="body1" align="right" gutterBottom>Date</Typography></Paper>
           </Grid>
+
           <Grid item xs={12}>
             <Paper className={classes.paper} variant="outlined">
               <Typography component="h1" variant="h5">
@@ -37,12 +42,11 @@ const ConversationDetails = () => {
               <Divider />
               <br />
               <Typography variant="body1" gutterBottom>
-                body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
-                unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
-                dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+                {monologText ? {monologText} : ' '}
               </Typography>
             </Paper>
           </Grid>
+
           <Grid item xs={12}>
             <Paper className={classes.paper} variant="outlined">
               <Typography component="h1" variant="h5">
@@ -51,12 +55,11 @@ const ConversationDetails = () => {
               <Divider />
               <br />
               <Typography variant="body1" gutterBottom>
-                body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
-                unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
-                dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+                {currentSolution ? {currentSolution} : ' '}
               </Typography>
             </Paper>
           </Grid>
+
           <Grid item xs={6}>
             <Paper className={classes.paper} variant="outlined">
               <Typography component="h1" variant="h5">
@@ -64,19 +67,25 @@ const ConversationDetails = () => {
               </Typography>
               <Divider />
               <br />
-
+              <Typography variant="body1" gutterBottom>
+              {currentTags ? {currentTags} : ' '}
+              </Typography>
             </Paper>
           </Grid>
+
           <Grid item xs={6}>
             <Paper className={classes.paper} variant="outlined">
-            <Typography component="h1" variant="h5">
+              <Typography component="h1" variant="h5">
                 Mood
               </Typography>
               <Divider />
               <br />
-
+              <Typography variant="body1" gutterBottom>
+                {currentMood ? {currentMood} : ' '}
+              </Typography>
             </Paper>
           </Grid>
+
         </Grid>
       </Paper>
     </div>
