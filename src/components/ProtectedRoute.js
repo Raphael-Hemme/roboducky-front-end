@@ -10,7 +10,7 @@ const ProtectedRoute = ({ component: Component, onLogout, ...rest }) => {
         render={props =>
           decodeToken() ? (
           <Component {...props} onLogout={onLogout} />
-        ) : (
+          ) : (
           <Redirect
             to={{
               pathname: "/login",

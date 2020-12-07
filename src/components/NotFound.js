@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+
 import RoboduckyVisual from './RoboDuckyVisual';
 
 const useStyles = makeStyles((theme) => ({
@@ -15,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  buttonStyle: {
+    color: "white",
+    backgroundColor: "primary"
+  }
 }));
 
 const NotFound = () => {
@@ -26,42 +33,29 @@ const NotFound = () => {
         <Grid container spacing={3} justify="center">
           <Grid item xs={12} style={{ justifyContent: "center", display: "flex" }}>
             
-              <RoboduckyVisual />
+              <RoboduckyVisual size="400"/>
 
           </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper} elevation={0}>
               <Typography component="h1" variant="h5">
-                Hey there! I'm roboducky
+                404
               </Typography>
               <br />
               <Typography component="h1" variant="h6">
-              Welcome to roboducky.dev! <br />
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-                Roboducky is the digital continuation of a long standing tradition in software development 
-                - the practice of talking to a rubberduck when you have to figure out how to fix an issue or 
-                solve a problem. <br /><br />
-                While offering you the same experience of patiently listening to your troubles, roboducky 
-                actually remembers your conversations for future reference in case you stumble upon a similar
-                problem again.
+                The site you are looking for, does not seem to be there.
               </Typography>
             </Paper>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Paper className={classes.paper} elevation={0}>
-              <Typography component="h1" variant="h5">
-                sign up
-              </Typography>
-
-            </Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper className={classes.paper} elevation={0}>
-            <Typography component="h1" variant="h5">
-                log in
-              </Typography>
-
+              <Button component={Link} to={'/'}
+                  variant="contained"
+                  color="primary"
+                  className={classes.buttonStyle}
+              >
+                home
+              </Button>
             </Paper>
           </Grid>
         </Grid>

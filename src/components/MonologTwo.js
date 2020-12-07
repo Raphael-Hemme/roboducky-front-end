@@ -65,15 +65,7 @@ const MonologTwo = ({ onMonolog, onCurrentSolution, onCurrentTags, onCurrentMood
                   autoFocus
                   onChange={e => onMonolog(e)}
                 />
-{/*                 <Button
-                  onClick={() => console.log(monologText)}
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                >
-                  Sign In
-                </Button>
- */}
+
               </form>
             </Paper>
           </Grid>

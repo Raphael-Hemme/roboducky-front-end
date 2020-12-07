@@ -64,10 +64,7 @@ const userContext = async () => {
   }
 }
 
-const saveConversation = async ({monolog,
-  currentSolution,
-  currentTags,
-  currentMood}) => {
+const saveConversation = async ({monolog, currentSolution, currentTags, currentMood}) => {
   console.log();
   setAuthHeaders()
   try {
@@ -83,4 +80,28 @@ const saveConversation = async ({monolog,
   }
 } 
 
-export { axios as client, setAuthHeaders, login, logout, userContext, decodeToken, saveConversation }
+/* const listAllConversations = async () => {
+  setAuthHeaders()
+  axios.get('/conversations')
+  try {
+    const data = await axios.get('/conversations')
+//  console.log(data.data)
+    return data.data
+  } catch (error) {
+    console.log(error.message)
+  } 
+}  */
+
+const retrieveConversationById = async (id) => {
+  setAuthHeaders()
+  try {
+    const endpointURL = `/convId/${id}`
+    const data = await axios.get(endpointURL)
+    console.log(data)
+    return data
+  } catch (error) {
+    console.log(error.message)
+  }
+} 
+
+export { axios as client, setAuthHeaders, login, logout, userContext, decodeToken, saveConversation, retrieveConversationById }

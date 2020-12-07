@@ -16,6 +16,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import GeneralWelcome from './components/GeneralWelcome';
 import ConversationDetails from './components/ConversationDetails';
 import NotFound from './components/NotFound';
+import ListAllConversations from './components/ListAllConversations';
 
 import ConversationContext from './contexts/ConversationContext';
 
@@ -122,7 +123,26 @@ const App = () => {
               />
             </ThreeColumnLayout>
           </ProtectedRoute>
-          <Route path="/conversation-details">
+          <ProtectedRoute path="/previous-conversations">
+            <ThreeColumnLayout>
+              <RoboduckyVisual key='leftComp' size="200"/>
+              <ListAllConversations key='centerComp' />
+              <MenuButtonGroup 
+                key='rightComp' 
+                onMonolog={handleSetMonolog}
+                monologText={monolog}
+                onCurrentSolution={handleSetCurrentSolution}
+                currentSolution={currentSolution}
+                onCurrentTags={handleSetCurrentTags}
+                currentTags={currentTags}
+                onCurrentMood={handleSetCurrentMood}
+                currentMood={currentMood}
+                onSaveConversation={handleSaveConversation}
+                onLogout={handleLogout}
+              />
+            </ThreeColumnLayout>
+          </ProtectedRoute>
+          <ProtectedRoute path="/conversation-details/:id">
             <ThreeColumnLayout>
               <RoboduckyVisual key='leftComp' size="200"/>
               <ConversationDetails 
@@ -146,7 +166,7 @@ const App = () => {
                 onLogout={handleLogout}
               />
             </ThreeColumnLayout>
-          </Route>
+          </ProtectedRoute>
           <Route path="/patiently-listening">
             <SingleColumnLayout><RoboduckyVisual key='visual'/></SingleColumnLayout>
           </Route>

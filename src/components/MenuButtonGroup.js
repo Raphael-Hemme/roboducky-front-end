@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core';
 import EditMenu from './EditMenu';
 import QuackButton from './QuackButton';
+import LogoutButton from './LogoutButton';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MenuButtonGroup = ({ onMonolog, monologText, onCurrentSolution, currentSolution, onCurrentTags, currentTags, onCurrentMood, currentMood, onSaveConversation }) => {
+const MenuButtonGroup = ({ onMonolog, monologText, onCurrentSolution, currentSolution, onCurrentTags, currentTags, onCurrentMood, currentMood, onSaveConversation, onLogout }) => {
   const classes = useStyles();
 
   return (
@@ -30,7 +31,8 @@ const MenuButtonGroup = ({ onMonolog, monologText, onCurrentSolution, currentSol
         spacing={2}
       >
         <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
-          <EditMenu />
+          <LogoutButton onLogout={onLogout}
+          />
         </Grid>
         <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
           <EditMenu />
