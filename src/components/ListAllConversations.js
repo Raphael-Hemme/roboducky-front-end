@@ -70,49 +70,10 @@ const ListAllConversations = ({ monologText, currentSolution, currentTags, curre
 
           <Grid item xs={12}>
 
-          { duckyMemory 
+          { duckyMemory.length
           ? duckyMemory.map((el) => <SingleConvCard memoryElement={el}/>) 
           : <NoMemory />  }
             
-          </Grid>
-
-          <Grid item xs={12}>
-            <Paper className={classes.paper} variant="outlined">
-              <Typography component="h1" variant="h5">
-                Your Solution
-              </Typography>
-              <Divider />
-              <br />
-              <Typography variant="body1" gutterBottom>
-                {currentSolution ? {currentSolution} : ' '}
-              </Typography>
-            </Paper>
-          </Grid>
-
-          <Grid item xs={6}>
-            <Paper className={classes.paper} variant="outlined">
-              <Typography component="h1" variant="h5">
-                Tags
-              </Typography>
-              <Divider />
-              <br />
-              <Typography variant="body1" gutterBottom>
-              {currentTags ? {currentTags} : ' '}
-              </Typography>
-            </Paper>
-          </Grid>
-
-          <Grid item xs={6}>
-            <Paper className={classes.paper} variant="outlined">
-              <Typography component="h1" variant="h5">
-                Mood
-              </Typography>
-              <Divider />
-              <br />
-              <Typography variant="body1" gutterBottom>
-                {currentMood ? {currentMood} : ' '}
-              </Typography>
-            </Paper>
           </Grid>
 
         </Grid>

@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -13,7 +15,11 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2),
   },
   media: {
-    height: 50,
+    height: 90,
+  },
+  buttonStyle: {
+    color: "white",
+    backgroundColor: "primary"
   },
 }));
 
@@ -34,12 +40,25 @@ const SingleConvCard = ({memoryElement}) => {
   console.log(memoryElement ? shortenDescription('Wieviele Muelbeutel?') : 'Whaat?')
 
 
+  const randomCardImagePicker = () => {
+    let rando = Math.floor(Math.random() * 4)
+    console.log(rando)
+    if (rando <= 1) {
+      return "http://localhost:3000/images/roboduckyCardCodeImage01.png"
+    } else if (rando > 1 && rando <= 2) {
+      return "http://localhost:3000/images/roboduckyCardCodeImage02.png"
+    } else if (rando > 2) {
+      return "http://localhost:3000/images/roboduckyCardCodeImage03.png"
+    }
+  } 
+  
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image={randomCardImagePicker()}
           title="Contemplative Reptile"
         />
         <CardContent>
@@ -52,11 +71,12 @@ const SingleConvCard = ({memoryElement}) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          {memoryElement._id}
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
+        <Button component={Link} to={`conversation-details/${memoryElement._id}`}
+          variant="contained"
+          color="primary"
+          className={classes.buttonStyle}
+        >
+          remember
         </Button>
       </CardActions>
     </Card>
@@ -64,3 +84,5 @@ const SingleConvCard = ({memoryElement}) => {
 }
 
 export default SingleConvCard
+
+///conversation-details/:id

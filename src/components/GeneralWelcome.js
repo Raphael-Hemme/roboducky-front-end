@@ -56,7 +56,7 @@ const GeneralWelcome = () => {
           </Grid>
           <Grid item xs={6}>
             <Paper className={classes.paper} elevation={0}>
-              <Button component={Link} to={'/my_route'}
+              <Button component={Link} to={'/signup'}
                 variant="contained"
                 color="primary"
                 className={classes.buttonStyle}

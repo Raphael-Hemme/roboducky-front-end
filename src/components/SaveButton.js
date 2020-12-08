@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import SaveIcon from '@material-ui/icons/Save';
+
 
 const useStyles = makeStyles((theme) => ({
   buttonStyle: {
@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const QuackButton = ({onSaveConversation}) => {
+const SaveButton = ({onSaveConversation}) => {
   const classes = useStyles();
 
   return (
@@ -18,12 +18,11 @@ const QuackButton = ({onSaveConversation}) => {
         variant="contained"
         color="primary"
         className={classes.buttonStyle}
-        // startIcon={<SaveIcon />}
         onClick={() => onSaveConversation()}
       >
-        Quack!
+        save
       </Button>
   );
 }
 
-export default QuackButton;
+export default SaveButton;

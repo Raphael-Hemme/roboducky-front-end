@@ -2,6 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import jwt from 'jsonwebtoken'
 
+
 const APP_NAME = 'roboducky'
 
 if (process.env.NODE_ENV === "development") {
@@ -64,17 +65,42 @@ const userContext = async () => {
   }
 }
 
-const saveConversation = async ({monolog, currentSolution, currentTags, currentMood}) => {
+/* const saveConversation = async ({monolog, currentSolution, currentTags, currentMood}) => {
   console.log();
   setAuthHeaders()
   try {
-    const data = await axios.post('/conversations', {
+    const data =  {
       convDescription: monolog,
       convSolution: currentSolution,
       convTags: currentTags,
       convMood: currentMood
+    }
+    await axios.post('/conversations', data)
+    .then(res => {
+      const id = res.data._id
+      history.push(`conversation-details/${id}`) 
     })
-    return data
+//    return data
+  } catch (error) {
+    console.log(error.message)
+  }
+}  */
+
+const signUp = async ({userName, userEmail, duckyName, password}) => {
+  try {
+    const data = {
+      userName,
+      userEmail,
+      duckyName,
+      password
+    }
+    await axios.post('/duckies', data)
+    const token = data.headers['x-authorization-token'];
+    if (token) {
+      console.log(token)
+      Cookies.set(`${APP_NAME}-auth-token`, token);
+      setAuthHeaders()
+    }
   } catch (error) {
     console.log(error.message)
   }
@@ -104,4 +130,12 @@ const retrieveConversationById = async (id) => {
   }
 } 
 
-export { axios as client, setAuthHeaders, login, logout, userContext, decodeToken, saveConversation, retrieveConversationById }
+export { axios as client,
+        setAuthHeaders,
+        login,
+        signUp,
+        logout,
+        userContext,
+        decodeToken,
+//        saveConversation,
+        retrieveConversationById }

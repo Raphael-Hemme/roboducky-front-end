@@ -1,7 +1,8 @@
 import React, {useEffect, useState } from 'react';
 import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
+import axios from 'axios'
 
-import { login, logout, setAuthHeaders, saveConversation } from './utils/auth'
+import { login, logout, setAuthHeaders, signUp, saveConversation } from './utils/auth'
 
 // component imports
 import EditMenu from './components/EditMenu';
@@ -11,18 +12,27 @@ import RoboduckyVisual from './components/RoboDuckyVisual';
 import MonologTwo from './components/MonologTwo';
 import MenuButtonGroup from './components/MenuButtonGroup';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import Admin from './components/Admin';
 import ProtectedRoute from './components/ProtectedRoute';
 import GeneralWelcome from './components/GeneralWelcome';
 import ConversationDetails from './components/ConversationDetails';
 import NotFound from './components/NotFound';
 import ListAllConversations from './components/ListAllConversations';
+import Home from './components/Home';
 
-import ConversationContext from './contexts/ConversationContext';
+//import ConversationContext from './contexts/ConversationContext';
 
 
 
 const App = () => {
+
+  // use state for userContext
+  const [ ducky, setDucky ] = useState(null);
+
+  const handleSetDucky = (data) => {
+    setDucky(data)
+  }
 
 
   // useState and handlers for auth / login / logout
@@ -40,13 +50,36 @@ const App = () => {
 
   const handleLogin = async () => {
     await login(credentials)
-    history.push('/review-and-options')
+    history.push('/home') 
   }
 
   const handleLogout = () => {
     logout()
-    history.push('/login')
+    handleSetDucky({
+      "userName": "",
+      "userEmail": "",
+      "duckyName": "",
+      "_id": ""
+    })
+    history.push('/')
   }
+
+
+  // useState and handlers for sign up
+  const [ newDucky, setNewDucky ] = useState(null);
+
+  const handleSetNewDucky = (e) => {
+    setNewDucky(prevNewDucky => ({
+      ...prevNewDucky,
+      [e.target.name]: e.target.value
+    }))
+  }
+
+  const handleSignup = async () => {
+    await signUp(newDucky)
+    history.push('/home') 
+  }
+
 
   // use state for monolog - this is the useState for the conversation description.
   const [ monolog, setMonolog ] = useState(null);
@@ -74,14 +107,37 @@ const App = () => {
 //    console.log(e.target.value)
   }
 
-  const handleSaveConversation = () => {
-    saveConversation({
+  const handleSaveConversation = async () => {
+    const newId = await saveConversation({
       monolog,
       currentSolution,
       currentTags,
       currentMood,
     })
+    // get back the newly created _id (should be returned as part of the response object)
+    
   }
+
+  const saveConversation = async ({monolog, currentSolution, currentTags, currentMood}) => {
+    console.log();
+    setAuthHeaders()
+    try {
+      const data =  {
+        convDescription: monolog,
+        convSolution: currentSolution,
+        convTags: currentTags,
+        convMood: currentMood
+      }
+      await axios.post('/conversations', data)
+      .then(res => {
+        const id = res.data._id
+        history.push(`conversation-details/${id}`) 
+      })
+  //    return data
+    } catch (error) {
+      console.log(error.message)
+    }
+  } 
 
   return (
     //<ConversationContext.Provider>
@@ -89,6 +145,9 @@ const App = () => {
         <Switch>
           <Route path="/login">
             <SingleColumnLayout><Login onLogin={handleLogin} onSetCredentials={handleSetCredentials} /></SingleColumnLayout>
+          </Route>
+          <Route path="/signup">
+            <SingleColumnLayout><Signup onSignup={handleSignup} onSetNewDucky={handleSetNewDucky} /></SingleColumnLayout>
           </Route>
           <ProtectedRoute path="/admin" component={Admin} onLogout={handleLogout} />
           <Route path="/add-tags">
@@ -123,6 +182,11 @@ const App = () => {
               />
             </ThreeColumnLayout>
           </ProtectedRoute>
+          
+          <ProtectedRoute path="/home">
+            <SingleColumnLayout><Home onLogout={handleLogout} currentDucky={ducky} onCurrentDucky={handleSetDucky}/></SingleColumnLayout>
+          </ProtectedRoute>
+
           <ProtectedRoute path="/previous-conversations">
             <ThreeColumnLayout>
               <RoboduckyVisual key='leftComp' size="200"/>
@@ -147,10 +211,6 @@ const App = () => {
               <RoboduckyVisual key='leftComp' size="200"/>
               <ConversationDetails 
                 key='centerComp'
-                monologText={monolog}
-                currentSolution={currentSolution}
-                currentTags={currentTags}
-                currentMood={currentMood}
                 />
               <MenuButtonGroup 
                 key='rightComp'

@@ -1,5 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+
+
+import {userContext} from '../utils/auth'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -7,6 +10,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import RoboduckyVisual from './RoboDuckyVisual';
+import grey from '@material-ui/core/colors/grey';
+import teal from '@material-ui/core/colors/teal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,11 +25,45 @@ const useStyles = makeStyles((theme) => ({
   buttonStyle: {
     color: "white",
     backgroundColor: "primary"
+  },
+  dontButtonStyle: {
+    color: "white",
+    backgroundColor: grey[500],
+  },
+  pleaseButtonStyle: {
+    color: "white",
+    backgroundColor: teal[400],
   }
 }));
 
-const PersonalizedWelcome = () => {
+const Home = ({currentDucky, onCurrentDucky, onLogout}) => {
   const classes = useStyles();
+
+  useEffect(() => {
+    userContext()
+    .then(res => onCurrentDucky(res.data))
+    .catch(error => console.log(error.message))
+  }, []);
+
+  console.log(currentDucky ? currentDucky.userName : 'No ducky has landed.')
+  
+  const daytimeGreeting = () => {
+    const date = Date(Date.now());
+    let today = new Date();
+    let hour = today.getHours() + "";
+
+    if (hour >= 0 && hour <= 11) {
+      return 'Good morning '
+    } else if (hour >= 11 && hour <= 18) {
+      return 'Hello '
+    } else if (hour >= 18 && hour <= 23) {
+      return 'Good evening '
+    }
+  }
+
+  let personalGreeting = 'Hey there'
+  currentDucky ? personalGreeting = `${daytimeGreeting()}${currentDucky.userName}` : personalGreeting = 'Hey there';
+  
 
   return (
     <div className={classes.root}>
@@ -38,7 +77,7 @@ const PersonalizedWelcome = () => {
           <Grid item xs={12}>
             <Paper className={classes.paper} elevation={0}>
               <Typography component="h1" variant="h5">
-                Hey --- Platzhalter ---
+                {personalGreeting}
               </Typography>
               <br />
               <Typography component="h1" variant="h6">
@@ -52,23 +91,38 @@ const PersonalizedWelcome = () => {
           </Grid>
           <Grid item xs={3}>
             <Paper className={classes.paper} elevation={0}>
-              <Button component={Link} to={'/my_route'} className="buttonStyle">
-                  log out
+              <Button 
+                variant="contained"
+                color="primary"
+                className={classes.dontButtonStyle}
+                onClick={() => onLogout()}
+              >
+                log out
               </Button>
             </Paper>
           </Grid>
           <Grid item xs={3}>
             <Paper className={classes.paper} elevation={0}>
-                <Button component={Link} to={'/login'} className="buttonStyle">
-                  
-                </Button>
+              <Button 
+                variant="contained"
+                color="primary"
+                className={classes.buttonStyle}
+                component={Link} to={'/previous-conversations'}
+              >
+                remind me
+              </Button>
             </Paper>
           </Grid>
           <Grid item xs={3}>
             <Paper className={classes.paper} elevation={0}>
-                <Button component={Link} to={'/login'} className="buttonStyle">
-                  log in
-                </Button>
+              <Button 
+                variant="contained"
+                color="primary"
+                className={classes.pleaseButtonStyle}
+                component={Link} to={'/review-and-options'}
+              >
+                listen
+              </Button>
             </Paper>
           </Grid>
         </Grid>
@@ -77,7 +131,7 @@ const PersonalizedWelcome = () => {
   );
 }
 
-export default PersonalizedWelcome;
+export default Home;
 
 
 

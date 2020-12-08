@@ -1,4 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import {useParams} from 'react-router-dom';
+
+import axios from 'axios'
+
+import {setAuthHeaders} from '../utils/auth'
+
+
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -17,10 +24,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ConversationDetails = ({ monologText, currentSolution, currentTags, currentMood }) => {
+const ConversationDetails = () => {
   const classes = useStyles();
 
+  const { id } = useParams();
+  console.log(id)
+  const axiosURL = `/conversations/convId/${id}`
+  console.log(axiosURL)
 
+  const [ retrievedConversation, setRetrievedConversation ] = useState()
+  
+  useEffect(() => {
+    setAuthHeaders()
+    axios.get(axiosURL)
+    .then(res => setRetrievedConversation(res.data))
+    .catch(error => console.log(error.message))
+  }, [id]);
+
+  console.log(retrievedConversation ? retrievedConversation : 'not able to retrieve')
   return (
     <div className={classes.root}>
       <Paper className={classes.paper} variant="outlined">
@@ -42,7 +63,7 @@ const ConversationDetails = ({ monologText, currentSolution, currentTags, curren
               <Divider />
               <br />
               <Typography variant="body1" gutterBottom>
-                {monologText ? {monologText} : ' '}
+                {retrievedConversation ? retrievedConversation.convDescription : ' '}
               </Typography>
             </Paper>
           </Grid>
@@ -55,7 +76,7 @@ const ConversationDetails = ({ monologText, currentSolution, currentTags, curren
               <Divider />
               <br />
               <Typography variant="body1" gutterBottom>
-                {currentSolution ? {currentSolution} : ' '}
+              {retrievedConversation ? retrievedConversation.convSolution : ' '}
               </Typography>
             </Paper>
           </Grid>
@@ -68,7 +89,7 @@ const ConversationDetails = ({ monologText, currentSolution, currentTags, curren
               <Divider />
               <br />
               <Typography variant="body1" gutterBottom>
-              {currentTags ? {currentTags} : ' '}
+              {retrievedConversation ? retrievedConversation.convTags : ' '}
               </Typography>
             </Paper>
           </Grid>
@@ -81,7 +102,7 @@ const ConversationDetails = ({ monologText, currentSolution, currentTags, curren
               <Divider />
               <br />
               <Typography variant="body1" gutterBottom>
-                {currentMood ? {currentMood} : ' '}
+              {retrievedConversation ? retrievedConversation.convMood : ' '}
               </Typography>
             </Paper>
           </Grid>
