@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const PersonalizedWelcome = () => {
+const GeneralWelcome = () => {
   const classes = useStyles();
 
   return (
@@ -38,37 +38,42 @@ const PersonalizedWelcome = () => {
           <Grid item xs={12}>
             <Paper className={classes.paper} elevation={0}>
               <Typography component="h1" variant="h5">
-                Hey --- Platzhalter ---
+                Hey there! I'm roboducky
               </Typography>
               <br />
               <Typography component="h1" variant="h6">
-                I hope you have a nice day. <br />
+              Welcome to roboducky.dev! <br />
               </Typography>
               <Typography variant="body2" gutterBottom>
-                <br /> 
-                I'm here if you need me.
+                Roboducky is the digital continuation of a long standing tradition in software development 
+                - the practice of talking to a rubberduck when you have to figure out how to fix an issue or 
+                solve a problem. <br /><br />
+                While offering you the same experience of patiently listening to your troubles, roboducky 
+                actually remembers your conversations for future reference in case you stumble upon a similar
+                problem again.
               </Typography>
             </Paper>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={6}>
             <Paper className={classes.paper} elevation={0}>
-              <Button component={Link} to={'/my_route'} className="buttonStyle">
-                  log out
+              <Button component={Link} to={'/my_route'}
+                variant="contained"
+                color="primary"
+                className={classes.buttonStyle}
+              >
+                sign up
               </Button>
             </Paper>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={6}>
             <Paper className={classes.paper} elevation={0}>
-                <Button component={Link} to={'/login'} className="buttonStyle">
-                  
-                </Button>
-            </Paper>
-          </Grid>
-          <Grid item xs={3}>
-            <Paper className={classes.paper} elevation={0}>
-                <Button component={Link} to={'/login'} className="buttonStyle">
-                  log in
-                </Button>
+              <Button component={Link} to={'/login'} 
+                variant="contained"
+                color="primary"
+                className={classes.buttonStyle}
+              >
+                log in
+              </Button>
             </Paper>
           </Grid>
         </Grid>
@@ -77,7 +82,7 @@ const PersonalizedWelcome = () => {
   );
 }
 
-export default PersonalizedWelcome;
+export default GeneralWelcome;
 
 
 

@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const QuackButton = ({onSaveConversation}) => {
+const LogoutButton = ({onLogout}) => {
   const classes = useStyles();
 
   return (
@@ -19,11 +19,11 @@ const QuackButton = ({onSaveConversation}) => {
         color="primary"
         className={classes.buttonStyle}
         // startIcon={<SaveIcon />}
-        onClick={() => onSaveConversation()}
+        onClick={() => onLogout()}
       >
-        Quack!
+        Logout
       </Button>
   );
 }
 
-export default QuackButton;
+export default LogoutButton;

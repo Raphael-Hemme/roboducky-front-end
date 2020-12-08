@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core';
 import EditMenu from './EditMenu';
 import QuackButton from './QuackButton';
+import LogoutButton from './LogoutButton';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MenuButtonGroup = () => {
+const MenuButtonGroup = ({ onMonolog, monologText, onCurrentSolution, currentSolution, onCurrentTags, currentTags, onCurrentMood, currentMood, onSaveConversation, onLogout }) => {
   const classes = useStyles();
 
   return (
@@ -29,14 +30,25 @@ const MenuButtonGroup = () => {
         alignItems="center"
         spacing={2}
       >
-        <Grid item xs={4} md={12} className={classes.button} variant="outlined">
+        <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
+          <LogoutButton onLogout={onLogout}
+          />
+        </Grid>
+        <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
           <EditMenu />
         </Grid>
-        <Grid item xs={4} md={12} className={classes.button} variant="outlined">
-          <EditMenu />
-        </Grid>
-        <Grid item xs={4} md={12} className={classes.button} variant="outlined">
-          <QuackButton />
+        <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
+          <QuackButton 
+            onMonolog={onMonolog}
+            monologText={monologText}
+            onCurrentSolution={onCurrentSolution}
+            currentSolution={currentSolution}
+            onCurrentTags={onCurrentTags}
+            currentTags={currentTags}
+            onCurrentMood={onCurrentMood}
+            currentMood={currentMood}
+            onSaveConversation={onSaveConversation}
+            />
         </Grid>
       </Grid>
       </div>
