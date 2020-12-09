@@ -16,6 +16,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    margin: theme.spacing(2),
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CreateConversation = ({ onMonolog, onCurrentSolution, currentTags, onCurrentTags, onCurrentMood }) => {
+const CreateConversation = ({ onMonolog, onCurrentSolution, currentTags, onCurrentTags, onCurrentTagsToSend, onCurrentMood }) => {
 
   ////// Own useStates and functions //////
 
@@ -62,7 +63,7 @@ const CreateConversation = ({ onMonolog, onCurrentSolution, currentTags, onCurre
         >
           <Typography className={classes.heading}>Your Issue</Typography>
           <Typography className={classes.secondaryHeading}>
-            I'm litening.
+            I'm listening.
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -135,7 +136,7 @@ const CreateConversation = ({ onMonolog, onCurrentSolution, currentTags, onCurre
         </AccordionSummary>
         <AccordionDetails>
           <Container maxWidth="lg">
-            <TagArray onCurrentTags={onCurrentTags} currentTags={currentTags}/>
+            <TagArray onCurrentTags={onCurrentTags} currentTags={currentTags} onCurrentTagsToSend={onCurrentTagsToSend}/>
           </Container>
         </AccordionDetails>
       </Accordion>

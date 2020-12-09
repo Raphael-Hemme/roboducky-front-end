@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import RoboduckyVisual from './RoboDuckyVisual';
+import RoboduckyVisualBig from './RoboDuckyVisualBig';
 import grey from '@material-ui/core/colors/grey';
 import teal from '@material-ui/core/colors/teal';
 
@@ -75,7 +75,7 @@ const Home = ({currentDucky, onCurrentDucky, onLogout}) => {
             xs={12}
             style={{ justifyContent: "center", display: "flex" }}
           >
-            <RoboduckyVisual size="400" />
+            <RoboduckyVisualBig />
           </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper} elevation={0}>
@@ -130,7 +130,7 @@ const Home = ({currentDucky, onCurrentDucky, onLogout}) => {
                       color="primary"
                       className={classes.pleaseButtonStyle}
                       component={Link}
-                      to={"/review-and-options"}
+                      to={"/listening"}
                       style={{maxWidth: '7rem', maxHeight: '2rem', minWidth: '7rem', minHeight: '2rem'}}
                     >
                       listen
@@ -149,66 +149,3 @@ const Home = ({currentDucky, onCurrentDucky, onLogout}) => {
 
 export default Home;
 
-/*               <Container component="span">
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.dontButtonStyle}
-                onClick={() => onLogout()}
-              >
-                log out
-              </Button>
-            </Container>
-            <Container component="span">
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.buttonStyle}
-                component={Link}
-                to={"/previous-conversations"}
-              >
-                remind me
-              </Button>
-            </Container>
-            <Container component="span">
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.pleaseButtonStyle}
-                component={Link}
-                to={"/review-and-options"}
-              >
-                listen
-              </Button>
-            </Container> */
-
-
-
-/* ///////// Get human readable time stamp /////////
-const getTimeStamp = () => {
-  const date = Date(Date.now()); 
-  let today = new Date();
-  let day = today.getDate() + "";
-  let month = (today.getMonth() + 1) + "";
-  let year = today.getFullYear() + "";
-  let hour = today.getHours() + "";
-  let minutes = today.getMinutes() + "";
-  let seconds = today.getSeconds() + "";
-
-  const checkZero = (data) => {
-    if(data.length == 1){
-      data = "0" + data;
-    }
-    return data;
-  }
-
-  day = checkZero(day);
-  month = checkZero(month);
-  year = checkZero(year);
-  hour = checkZero(hour);
-  minutes = checkZero(minutes);
-  seconds = checkZero(seconds);
-
-  const timeStamp = day + "." + month + "." + year + " - " + hour + ":" + minutes + ":" + seconds;
-  return timeStamp
-} */

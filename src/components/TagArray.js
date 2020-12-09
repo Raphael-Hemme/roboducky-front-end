@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TagArray = ({ currentTags, onCurrentTags}) => {
+const TagArray = ({ currentTags, onCurrentTags, onCurrentTagsToSend }) => {
 
   const classes = useStyles();
 
@@ -42,12 +42,15 @@ const TagArray = ({ currentTags, onCurrentTags}) => {
 
 
   const handleAdd = (e) => {
-    let intermediaryChipArray = chipData
+    //let intermediaryChipArray = chipData
     const randomKey = () => {
       return Math.random() * 1000000;
     }
-    intermediaryChipArray.push({"key": randomKey(), "label": currentTags})
-    setChipData(intermediaryChipArray);
+    //intermediaryChipArray.push({"key": randomKey(), "label": currentTags})
+    
+    setChipData(prevChipData => [...prevChipData, {"key": randomKey(), "label": currentTags}]);
+    console.log(chipData.map(el => el.label))
+    onCurrentTagsToSend(chipData.map(el => el.label))
     console.log(chipData)
   };
 

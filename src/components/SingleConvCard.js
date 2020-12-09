@@ -36,8 +36,6 @@ const SingleConvCard = ({memoryElement}) => {
     }
   }
 
-  console.log('Testy', shortenDescription('Wieviele Muelbeutel?'))
-  console.log(memoryElement ? shortenDescription('Wieviele Muelbeutel?') : 'Whaat?')
 
 
   const randomCardImagePicker = () => {
@@ -59,11 +57,11 @@ const SingleConvCard = ({memoryElement}) => {
         <CardMedia
           className={classes.media}
           image={randomCardImagePicker()}
-          title="Contemplative Reptile"
+          title="Contemplative Codelines"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Lizard
+            {memoryElement.convMood[0] ? memoryElement.convMood[0] : 'Your Issue'}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {shortenDescription(memoryElement.convDescription)}

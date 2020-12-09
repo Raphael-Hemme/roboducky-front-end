@@ -110,7 +110,7 @@ const ConversationDetails = () => {
               <Divider />
               <br />
               <Typography variant="body1" gutterBottom>
-              {retrievedConversation ? retrievedConversation.convTags : ' '}
+                {retrievedConversation ? retrievedConversation.convTags : ' '}
               </Typography>
             </Paper>
           </Grid>
@@ -123,7 +123,7 @@ const ConversationDetails = () => {
               <Divider />
               <br />
               <Typography variant="body1" gutterBottom>
-              {retrievedConversation ? retrievedConversation.convMood : ' '}
+                {retrievedConversation ? retrievedConversation.convMood : ' '}
               </Typography>
             </Paper>
           </Grid>

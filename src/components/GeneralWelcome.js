@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import RoboduckyVisual from './RoboDuckyVisual';
+import RoboduckyVisualBig from './RoboDuckyVisualBig';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +32,7 @@ const GeneralWelcome = () => {
         <Grid container spacing={3} justify="center">
           <Grid item xs={12} style={{ justifyContent: "center", display: "flex" }}>
             
-              <RoboduckyVisual size='400'/>
+              <RoboduckyVisualBig/>
 
           </Grid>
           <Grid item xs={12}>

@@ -35,7 +35,7 @@ const MenuButtonGroup = ({ onMonolog, monologText, onCurrentSolution, currentSol
         />
         </Grid>
         <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
-          <EditMenu />
+          {/* <EditMenu /> */}
         </Grid>
         <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
           <SaveButton 

@@ -28,6 +28,7 @@ const decodeToken = () => {
   } catch (error) {
     console.log(error.message)
   }
+  //console.log({decodeToken})
   return decodedToken
 }
 
@@ -40,7 +41,7 @@ const login = async (credentials) => {
     })
     const token = data.headers['x-authorization-token'];
     if (token) {
-      console.log(token)
+    //  console.log(token)
       Cookies.set(`${APP_NAME}-auth-token`, token);
       setAuthHeaders()
     }
@@ -97,7 +98,7 @@ const signUp = async ({userName, userEmail, duckyName, password}) => {
     await axios.post('/duckies', data)
     const token = data.headers['x-authorization-token'];
     if (token) {
-      console.log(token)
+    //  console.log(token)
       Cookies.set(`${APP_NAME}-auth-token`, token);
       setAuthHeaders()
     }

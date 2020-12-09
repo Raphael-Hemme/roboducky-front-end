@@ -17,13 +17,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'transparent',
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 400,
+    height: 400,
   },
 }));
 
 
-const RoboduckyVisual = () => {
+const RoboduckyVisualBig = () => {
+  
 
   let homeLink
   decodeToken() ? homeLink = '/home' : homeLink = '/'
@@ -39,4 +40,4 @@ const RoboduckyVisual = () => {
   );
 }
 
-export default RoboduckyVisual;
+export default RoboduckyVisualBig;

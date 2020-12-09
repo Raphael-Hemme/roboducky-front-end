@@ -85,7 +85,9 @@ const App = () => {
   const [ monolog, setMonolog ] = useState(null);
   const [ currentSolution, setCurrentSolution ] = useState(null);
   const [ currentTags, setCurrentTags ] = useState(null);
+  const [ currentTagsToSend, setCurrentTagsToSend ] = useState(null);
   const [ currentMood, setCurrentMood ] = useState(null);
+
 
   const handleSetMonolog = (e) => {
     setMonolog(e.target.value)
@@ -98,9 +100,17 @@ const App = () => {
   }
 
   const handleSetCurrentTags = (e) => {
+//    setCurrentTags(e.target.value) was working, but not as expected
     setCurrentTags(e.target.value)
 //    console.log(e.target.value)
   }
+
+  const handleSetCurrentTagsToSend = (inputTags) => {
+    //  setChipData(prevChipData => [...prevChipData, {"key": randomKey(), "label": currentTags}]);
+        console.log(inputTags)
+        setCurrentTagsToSend(inputTags)
+        console.log('currentTagsToSend up in the App: ',currentTagsToSend)
+      }
 
   const handleSetCurrentMood = (e) => {
     setCurrentMood(e.target.value)
@@ -111,21 +121,21 @@ const App = () => {
     const newId = await saveConversation({
       monolog,
       currentSolution,
-      currentTags,
+      currentTagsToSend,
       currentMood,
     })
     // get back the newly created _id (should be returned as part of the response object)
     
   }
 
-  const saveConversation = async ({monolog, currentSolution, currentTags, currentMood}) => {
+  const saveConversation = async ({monolog, currentSolution, currentTagsToSend, currentMood}) => {
     console.log();
     setAuthHeaders()
     try {
       const data =  {
         convDescription: monolog,
         convSolution: currentSolution,
-        convTags: currentTags,
+        convTags: currentTagsToSend,
         convMood: currentMood
       }
       await axios.post('/conversations', data)
@@ -150,9 +160,9 @@ const App = () => {
             <SingleColumnLayout><Signup onSignup={handleSignup} onSetNewDucky={handleSetNewDucky} /></SingleColumnLayout>
           </Route>
           <ProtectedRoute path="/admin" component={Admin} onLogout={handleLogout} />
-          <ProtectedRoute path="/review-and-options">
+          <ProtectedRoute path="/listening">
             <ThreeColumnLayout>
-              <RoboduckyVisual key='leftComp' size={200}/>
+              <RoboduckyVisual key='leftComp'/>
               <CreateConversation 
                 key='centerComp'
                 onMonolog={handleSetMonolog}
@@ -161,6 +171,7 @@ const App = () => {
                 currentSolution={currentSolution}
                 onCurrentTags={handleSetCurrentTags}
                 currentTags={currentTags}
+                onCurrentTagsToSend={handleSetCurrentTagsToSend}
                 onCurrentMood={handleSetCurrentMood}
                 currentMood={currentMood}
               />
@@ -182,7 +193,7 @@ const App = () => {
 
           <ProtectedRoute path="/previous-conversations">
             <ThreeColumnLayout>
-              <RoboduckyVisual key='leftComp' size={200}/>
+              <RoboduckyVisual key='leftComp'/>
               <ListAllConversations key='centerComp' />
               <MenuButtonGroup 
                 key='rightComp' 
@@ -201,7 +212,7 @@ const App = () => {
           </ProtectedRoute>
           <ProtectedRoute path="/conversation-details/:id">
             <ThreeColumnLayout>
-              <RoboduckyVisual key='leftComp' size={200}/>
+              <RoboduckyVisual key='leftComp'/>  
               <ConversationDetails 
                 key='centerComp'
                 />
@@ -216,9 +227,9 @@ const App = () => {
               />
             </ThreeColumnLayout>
           </ProtectedRoute>
-          <Route path="/patiently-listening">
+{/*           <Route path="/patiently-listening">
             <SingleColumnLayout><RoboduckyVisual key='visual'/></SingleColumnLayout>
-          </Route>
+          </Route> */}
           <Route path="/404">
             <SingleColumnLayout><NotFound /></SingleColumnLayout>
           </Route>
