@@ -32,7 +32,7 @@ const MenuButtonGroup = ({ onMonolog, monologText, onCurrentSolution, currentSol
       >
         <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
           <LogoutButton onLogout={onLogout}
-          />
+        />
         </Grid>
         <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
           <EditMenu />

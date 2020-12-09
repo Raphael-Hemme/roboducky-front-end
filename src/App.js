@@ -9,7 +9,7 @@ import EditMenu from './components/EditMenu';
 import ThreeColumnLayout from './layouts/ThreeColumnLayout';
 import SingleColumnLayout from './layouts/SingleColumnLayout';
 import RoboduckyVisual from './components/RoboDuckyVisual';
-import MonologTwo from './components/MonologTwo';
+import CreateConversation from './components/CreateConversation';
 import MenuButtonGroup from './components/MenuButtonGroup';
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -150,13 +150,10 @@ const App = () => {
             <SingleColumnLayout><Signup onSignup={handleSignup} onSetNewDucky={handleSetNewDucky} /></SingleColumnLayout>
           </Route>
           <ProtectedRoute path="/admin" component={Admin} onLogout={handleLogout} />
-          <Route path="/add-tags">
-            <ThreeColumnLayout><RoboduckyVisual key='leftComp' size="200"/><MonologTwo key='centerComp'/><MenuButtonGroup key='rightComp'/></ThreeColumnLayout>
-          </Route>
           <ProtectedRoute path="/review-and-options">
             <ThreeColumnLayout>
-              <RoboduckyVisual key='leftComp' size="200"/>
-              <MonologTwo 
+              <RoboduckyVisual key='leftComp' size={200}/>
+              <CreateConversation 
                 key='centerComp'
                 onMonolog={handleSetMonolog}
                 monologText={monolog}
@@ -170,13 +167,9 @@ const App = () => {
               <MenuButtonGroup 
                 key='rightComp' 
                 onMonolog={handleSetMonolog}
-                monologText={monolog}
                 onCurrentSolution={handleSetCurrentSolution}
-                currentSolution={currentSolution}
                 onCurrentTags={handleSetCurrentTags}
-                currentTags={currentTags}
                 onCurrentMood={handleSetCurrentMood}
-                currentMood={currentMood}
                 onSaveConversation={handleSaveConversation}
                 onLogout={handleLogout}
               />
@@ -189,7 +182,7 @@ const App = () => {
 
           <ProtectedRoute path="/previous-conversations">
             <ThreeColumnLayout>
-              <RoboduckyVisual key='leftComp' size="200"/>
+              <RoboduckyVisual key='leftComp' size={200}/>
               <ListAllConversations key='centerComp' />
               <MenuButtonGroup 
                 key='rightComp' 
@@ -208,20 +201,16 @@ const App = () => {
           </ProtectedRoute>
           <ProtectedRoute path="/conversation-details/:id">
             <ThreeColumnLayout>
-              <RoboduckyVisual key='leftComp' size="200"/>
+              <RoboduckyVisual key='leftComp' size={200}/>
               <ConversationDetails 
                 key='centerComp'
                 />
               <MenuButtonGroup 
                 key='rightComp'
                 onMonolog={handleSetMonolog}
-                monologText={monolog}
                 onCurrentSolution={handleSetCurrentSolution}
-                currentSolution={currentSolution}
                 onCurrentTags={handleSetCurrentTags}
-                currentTags={currentTags}
                 onCurrentMood={handleSetCurrentMood}
-                currentMood={currentMood}
                 onSaveConversation={handleSaveConversation}
                 onLogout={handleLogout}
               />

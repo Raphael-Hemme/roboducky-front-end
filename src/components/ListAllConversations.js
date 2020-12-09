@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import { login, logout, setAuthHeaders, saveConversation } from '../utils/auth'
 import axios from 'axios';
 import NoMemory from './NoMemory';
@@ -26,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ListAllConversations = ({ monologText, currentSolution, currentTags, currentMood }) => {
+const ListAllConversations = () => {
   const classes = useStyles();
 
   const [ duckyMemory, setDuckyMemory ] = useState([])
@@ -57,7 +55,7 @@ const ListAllConversations = ({ monologText, currentSolution, currentTags, curre
 
   return (
       <div className={classes.root}>
-      <Paper className={classes.paper} variant="outlined">
+      <Paper className={classes.paper} variant="outlined" style={{maxHeight: 500, overflow: 'auto'}}>
         <Grid container spacing={3}>
 
           <Grid item xs={6}>

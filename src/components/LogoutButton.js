@@ -20,6 +20,7 @@ const LogoutButton = ({onLogout}) => {
         className={classes.buttonStyle}
         // startIcon={<SaveIcon />}
         onClick={() => onLogout()}
+        style={{maxWidth: '7rem', maxHeight: '2rem', minWidth: '7rem', minHeight: '2rem'}}
       >
         Logout
       </Button>

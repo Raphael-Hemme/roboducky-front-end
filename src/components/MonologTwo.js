@@ -35,7 +35,7 @@ const MonologTwo = ({ onMonolog, onCurrentSolution, onCurrentTags, onCurrentMood
 
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper} variant="outlined">
+      <Paper className={classes.paper} variant="outlined" style={{maxHeight: '100%', overflow: 'auto'}}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Paper className={classes.paper} elevation={0}>

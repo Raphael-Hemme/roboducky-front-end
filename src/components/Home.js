@@ -7,6 +7,7 @@ import {userContext} from '../utils/auth'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import RoboduckyVisual from './RoboDuckyVisual';
@@ -69,10 +70,12 @@ const Home = ({currentDucky, onCurrentDucky, onLogout}) => {
     <div className={classes.root}>
       <Paper className={classes.paper} elevation={0} justify="center">
         <Grid container spacing={3} justify="center">
-          <Grid item xs={12} style={{ justifyContent: "center", display: "flex" }}>
-            
-              <RoboduckyVisual size='400'/>
-
+          <Grid
+            item
+            xs={12}
+            style={{ justifyContent: "center", display: "flex" }}
+          >
+            <RoboduckyVisual size="400" />
           </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper} elevation={0}>
@@ -84,47 +87,60 @@ const Home = ({currentDucky, onCurrentDucky, onLogout}) => {
                 I hope you have a nice day. <br />
               </Typography>
               <Typography variant="body2" gutterBottom>
-                <br /> 
+                <br />
                 I'm here if you need me.
               </Typography>
             </Paper>
           </Grid>
-          <Grid item xs={3}>
-            <Paper className={classes.paper} elevation={0}>
-              <Button 
-                variant="contained"
-                color="primary"
-                className={classes.dontButtonStyle}
-                onClick={() => onLogout()}
-              >
-                log out
-              </Button>
-            </Paper>
+
+          <Grid item xs={12}>
+            <Grid container justify="center" spacing={2}>
+              
+                <Grid item>
+                  <Paper className={classes.paper} elevation={0}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.dontButtonStyle}
+                      onClick={() => onLogout()}
+                      style={{maxWidth: '7rem', maxHeight: '2rem', minWidth: '7rem', minHeight: '2rem'}}
+                    >
+                      log out
+                    </Button>
+                  </Paper>
+                </Grid>
+                <Grid item>
+                  <Paper className={classes.paper} elevation={0}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.buttonStyle}
+                      component={Link}
+                      to={"/previous-conversations"}
+                      style={{maxWidth: '7rem', maxHeight: '2rem', minWidth: '7rem', minHeight: '2rem'}}
+                    >
+                      remind me
+                    </Button>
+                  </Paper>
+                </Grid>
+                <Grid item>
+                  <Paper className={classes.paper} elevation={0}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.pleaseButtonStyle}
+                      component={Link}
+                      to={"/review-and-options"}
+                      style={{maxWidth: '7rem', maxHeight: '2rem', minWidth: '7rem', minHeight: '2rem'}}
+                    >
+                      listen
+                    </Button>
+                  </Paper>
+                </Grid>
+
+            </Grid>
           </Grid>
-          <Grid item xs={3}>
-            <Paper className={classes.paper} elevation={0}>
-              <Button 
-                variant="contained"
-                color="primary"
-                className={classes.buttonStyle}
-                component={Link} to={'/previous-conversations'}
-              >
-                remind me
-              </Button>
-            </Paper>
-          </Grid>
-          <Grid item xs={3}>
-            <Paper className={classes.paper} elevation={0}>
-              <Button 
-                variant="contained"
-                color="primary"
-                className={classes.pleaseButtonStyle}
-                component={Link} to={'/review-and-options'}
-              >
-                listen
-              </Button>
-            </Paper>
-          </Grid>
+
         </Grid>
       </Paper>
     </div>
@@ -133,7 +149,38 @@ const Home = ({currentDucky, onCurrentDucky, onLogout}) => {
 
 export default Home;
 
-
+/*               <Container component="span">
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.dontButtonStyle}
+                onClick={() => onLogout()}
+              >
+                log out
+              </Button>
+            </Container>
+            <Container component="span">
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.buttonStyle}
+                component={Link}
+                to={"/previous-conversations"}
+              >
+                remind me
+              </Button>
+            </Container>
+            <Container component="span">
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.pleaseButtonStyle}
+                component={Link}
+                to={"/review-and-options"}
+              >
+                listen
+              </Button>
+            </Container> */
 
 
 

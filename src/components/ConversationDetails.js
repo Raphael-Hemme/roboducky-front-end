@@ -42,6 +42,23 @@ const ConversationDetails = () => {
   }, [id]);
 
   console.log(retrievedConversation ? retrievedConversation : 'not able to retrieve')
+  console.log(retrievedConversation ? retrievedConversation.convDate : "I'm too old for this ... date sh**")
+
+  let readableDetailDate;
+  let readableDetailTime;
+  const getDetailDate = () => {
+    let raw;
+    if (retrievedConversation) {
+      raw = retrievedConversation.convDate
+    } else {
+      raw = ' T     ~    '
+    } ;
+    const arrayedDate = raw.split('T');
+    readableDetailDate = arrayedDate[0]
+    readableDetailTime = arrayedDate[1].slice(0,8)
+  }
+  getDetailDate();
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper} variant="outlined">
@@ -52,7 +69,11 @@ const ConversationDetails = () => {
           </Grid>
 
           <Grid item xs={6}>
-            <Paper className={classes.paper} elevation={0}><Typography variant="body1" align="right" gutterBottom>Date</Typography></Paper>
+            <Paper className={classes.paper} elevation={0}>
+              <Typography variant="body1" align="right" gutterBottom>Date:</Typography>
+              <Typography variant="body2" align="right" gutterBottom>{readableDetailDate}</Typography>
+              <Typography variant="body2" align="right" gutterBottom>{readableDetailTime}</Typography>
+            </Paper>
           </Grid>
 
           <Grid item xs={12}>

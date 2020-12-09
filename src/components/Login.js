@@ -86,8 +86,9 @@ const Login = ({onLogin, onSetCredentials}) => {
                 variant="contained"
                 color="primary"
                 className={classes.buttonStyle}
+                style={{maxWidth: '7rem', maxHeight: '2rem', minWidth: '7rem', minHeight: '2rem'}}
               >
-                Home
+                Sign up
               </Button>
             </Paper>
           </Grid>
@@ -98,8 +99,9 @@ const Login = ({onLogin, onSetCredentials}) => {
                 color="primary"
                 className={classes.buttonStyle}
                 onClick={() => onLogin()}
+                style={{maxWidth: '7rem', maxHeight: '2rem', minWidth: '7rem', minHeight: '2rem'}}
               >
-                Sign in
+                log in
               </Button>
             </Paper>
           </Grid>

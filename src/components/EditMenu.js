@@ -69,6 +69,7 @@ const EditMenu = () => {
         variant="contained"
         color="primary"
         onClick={handleClick}
+        style={{maxWidth: '7rem', maxHeight: '2rem', minWidth: '7rem', minHeight: '2rem'}}
       >
         options
       </Button>
@@ -78,18 +79,16 @@ const EditMenu = () => {
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
+
       >
         <StyledMenuItem>
-          <ListItemIcon>
-            <SendIcon fontSize="small" />
-          </ListItemIcon>
           <ListItemText primary="Add Solution" />
         </StyledMenuItem>
         <StyledMenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small/" />
-          </ListItemIcon>
           <ListItemText primary="Add Tags" />
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <ListItemText primary="Add Solution" />
         </StyledMenuItem>
       </StyledMenu>
     </div>
