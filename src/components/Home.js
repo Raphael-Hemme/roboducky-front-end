@@ -43,6 +43,7 @@ const Home = ({currentDucky, onCurrentDucky, onLogout}) => {
   useEffect(() => {
     userContext()
     .then(res => onCurrentDucky(res.data))
+    .then(res => console.log(res.data))
     .catch(error => console.log(error.message))
   }, []);
 

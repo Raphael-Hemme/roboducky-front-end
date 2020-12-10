@@ -20,6 +20,7 @@ import ConversationDetails from './components/ConversationDetails';
 import NotFound from './components/NotFound';
 import ListAllConversations from './components/ListAllConversations';
 import Home from './components/Home';
+import SearchConversationsByTags from './components/SearchConversationsByTags';
 
 //import ConversationContext from './contexts/ConversationContext';
 
@@ -153,13 +154,17 @@ const App = () => {
     //<ConversationContext.Provider>
       <div className="App">
         <Switch>
+
           <Route path="/login">
             <SingleColumnLayout><Login onLogin={handleLogin} onSetCredentials={handleSetCredentials} /></SingleColumnLayout>
           </Route>
+
           <Route path="/signup">
             <SingleColumnLayout><Signup onSignup={handleSignup} onSetNewDucky={handleSetNewDucky} /></SingleColumnLayout>
           </Route>
+
           <ProtectedRoute path="/admin" component={Admin} onLogout={handleLogout} />
+
           <ProtectedRoute path="/listening">
             <ThreeColumnLayout>
               <RoboduckyVisual key='leftComp'/>
@@ -210,6 +215,27 @@ const App = () => {
               />
             </ThreeColumnLayout>
           </ProtectedRoute>
+
+          <ProtectedRoute path="/search-by-tags">
+            <ThreeColumnLayout>
+              <RoboduckyVisual key='leftComp'/>
+              <SearchConversationsByTags key='centerComp' />
+              <MenuButtonGroup 
+                key='rightComp' 
+                onMonolog={handleSetMonolog}
+                monologText={monolog}
+                onCurrentSolution={handleSetCurrentSolution}
+                currentSolution={currentSolution}
+                onCurrentTags={handleSetCurrentTags}
+                currentTags={currentTags}
+                onCurrentMood={handleSetCurrentMood}
+                currentMood={currentMood}
+                onSaveConversation={handleSaveConversation}
+                onLogout={handleLogout}
+              />
+            </ThreeColumnLayout>
+          </ProtectedRoute>
+
           <ProtectedRoute path="/conversation-details/:id">
             <ThreeColumnLayout>
               <RoboduckyVisual key='leftComp'/>  
@@ -233,9 +259,11 @@ const App = () => {
           <Route path="/404">
             <SingleColumnLayout><NotFound /></SingleColumnLayout>
           </Route>
+
           <Route path="/">
             <SingleColumnLayout><GeneralWelcome /></SingleColumnLayout>
           </Route>
+
         </Switch>
         
       </div>

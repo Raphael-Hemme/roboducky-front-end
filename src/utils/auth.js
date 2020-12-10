@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import jwt from 'jsonwebtoken'
-
+import { handleSetDucky } from '../App'
 
 const APP_NAME = 'roboducky'
 
@@ -56,9 +56,10 @@ const logout = () => {
 
 const userContext = async () => {
   setAuthHeaders()
-  console.log('Chicken Pizza')
   try {
     const data = await axios.get('/auth/me')
+    
+    console.log("withinuserContext", {data})
     return data
   } catch (error) {
     console.log(error.message)

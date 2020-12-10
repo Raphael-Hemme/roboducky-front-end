@@ -40,7 +40,7 @@ const SingleConvCard = ({memoryElement}) => {
 
   const randomCardImagePicker = () => {
     let rando = Math.floor(Math.random() * 4)
-    console.log(rando)
+    //console.log(rando)
     if (rando <= 1) {
       return "http://localhost:3000/images/roboduckyCardCodeImage01.png"
     } else if (rando > 1 && rando <= 2) {
@@ -64,7 +64,7 @@ const SingleConvCard = ({memoryElement}) => {
             {memoryElement.convMood[0] ? memoryElement.convMood[0] : 'Your Issue'}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {shortenDescription(memoryElement.convDescription)}
+            {memoryElement.convDescription ? shortenDescription(memoryElement.convDescription) : '...'}
           </Typography> 
         </CardContent>
       </CardActionArea>
