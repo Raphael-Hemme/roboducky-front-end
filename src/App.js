@@ -78,7 +78,7 @@ const App = () => {
 
   const handleSignup = async () => {
     await signUp(newDucky)
-    history.push('/home') 
+    history.push('/login') 
   }
 
 
