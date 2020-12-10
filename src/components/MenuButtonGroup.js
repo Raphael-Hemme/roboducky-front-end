@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core';
 import EditMenu from './EditMenu';
-import QuackButton from './QuackButton';
+import SaveButton from './SaveButton';
 import LogoutButton from './LogoutButton';
 
 
@@ -32,13 +32,13 @@ const MenuButtonGroup = ({ onMonolog, monologText, onCurrentSolution, currentSol
       >
         <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
           <LogoutButton onLogout={onLogout}
-          />
+        />
         </Grid>
         <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
-          <EditMenu />
+          <EditMenu /> 
         </Grid>
         <Grid item xs={4} lg={12} className={classes.button} variant="outlined">
-          <QuackButton 
+          <SaveButton 
             onMonolog={onMonolog}
             monologText={monologText}
             onCurrentSolution={onCurrentSolution}

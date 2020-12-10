@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
-import TagFacesIcon from '@material-ui/icons/TagFaces';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import teal from '@material-ui/core/colors/teal';
+
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  tagPaper: {
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
@@ -15,44 +19,92 @@ const useStyles = makeStyles((theme) => ({
   },
   chip: {
     margin: theme.spacing(0.5),
+    color: "white",
+    backgroundColor: teal[400],
   },
 }));
 
-const TagArray = () => {
+const TagArray = ({ currentTags, onCurrentTags, onCurrentTagsToSend }) => {
+
   const classes = useStyles();
-  const [chipData, setChipData] = React.useState([
-    { key: 0, label: 'Angular' },
+
+  const [chipData, setChipData] = useState([
+/*     { key: 0, label: 'Angular' },
     { key: 1, label: 'jQuery' },
     { key: 2, label: 'Polymer' },
     { key: 3, label: 'React' },
-    { key: 4, label: 'Vue.js' },
+    { key: 4, label: 'Vue.js' }, */
   ]);
 
   const handleDelete = (chipToDelete) => () => {
     setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
   };
 
+
+  const handleAdd = (e) => {
+    //let intermediaryChipArray = chipData
+    const randomKey = () => {
+      return Math.random() * 1000000;
+    }
+    //intermediaryChipArray.push({"key": randomKey(), "label": currentTags})
+    
+    setChipData(prevChipData => [...prevChipData, {"key": randomKey(), "label": currentTags}]);
+    console.log(chipData.map(el => el.label))
+    onCurrentTagsToSend(chipData.map(el => el.label))
+    console.log(chipData)
+  };
+
   return (
-    <Paper component="ul" className={classes.root}>
-      {chipData.map((data) => {
-        let icon;
+    <>
+      <Grid container className={classes.root} spacing={2}>
+        <Grid item xs={12}>
+          <Grid container justify="center" spacing={2}>
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                <form className={classes.form} noValidate>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    multiline
+                    rows="1"
+                    fullWidth
+                    id="tags"
+                    label="Tags"
+                    name="tags"
+                    autoFocus
+                    onChange={(e) => onCurrentTags(e)}
+                  />
+                </form>
+              </Paper>
+              <Button onClick={(e) => handleAdd(e)}>
+                Add
+              </Button>
+            </Grid>
 
-        if (data.label === 'React') {
-          icon = <TagFacesIcon />;
-        }
+            <Grid item xs={12}>
 
-        return (
-          <li key={data.key}>
-            <Chip
-              icon={icon}
-              label={data.label}
-              onDelete={data.label === 'React' ? undefined : handleDelete(data)}
-              className={classes.chip}
-            />
-          </li>
-        );
-      })}
-    </Paper>
+                <Paper component="ul" className={classes.tagPaper}>
+                  {chipData.map((data) => {
+                    return (
+                      <li key={data.key}>
+                        <Chip
+                          label={data.label}
+                          onDelete={
+                            handleDelete(data)
+                          }
+                          className={classes.chip}
+                        />
+                      </li>
+                    );
+                  })}
+                </Paper>
+
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </>
   );
 }
 

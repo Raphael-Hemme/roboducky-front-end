@@ -1,29 +1,29 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import SaveIcon from '@material-ui/icons/Save';
+import teal from '@material-ui/core/colors/teal';
+
 
 const useStyles = makeStyles((theme) => ({
   buttonStyle: {
     color: "white",
-    backgroundColor: "primary"
+    backgroundColor: teal[400],
   }
 }));
 
-const QuackButton = ({onSaveConversation}) => {
+const SaveButton = ({onSaveConversation}) => {
   const classes = useStyles();
 
   return (
       <Button
         variant="contained"
-        color="primary"
         className={classes.buttonStyle}
-        // startIcon={<SaveIcon />}
         onClick={() => onSaveConversation()}
+        style={{maxWidth: '7rem', maxHeight: '2rem', minWidth: '7rem', minHeight: '2rem'}}
       >
-        Quack!
+        save
       </Button>
   );
 }
 
-export default QuackButton;
+export default SaveButton;

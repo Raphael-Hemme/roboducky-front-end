@@ -34,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = ({onLogin, onSetCredentials}) => {
+const Signup = ({onSignup, onSetNewDucky, newDuckyState}) => {
   const classes = useStyles();
-
+  console.log(newDuckyState ? newDuckyState : 'hier kommt nix an')
   return (
     <div className={classes.root}>
       <Paper className={classes.paper} elevation={0} justify="center">
@@ -58,11 +58,31 @@ const Login = ({onLogin, onSetCredentials}) => {
                   margin="normal"
                   required
                   fullWidth
-                  id="username"
+                  id="userName"
                   label="Username"
-                  name="username"
+                  name="userName"
                   autoFocus
-                  onChange={e => onSetCredentials(e)}
+                  onChange={e => onSetNewDucky(e)}
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="duckyName"
+                  name="duckyName"
+                  label="Name your Ducky"
+                  onChange={e => onSetNewDucky(e)}
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="userEmail"
+                  label="E-Mail"
+                  name="userEmail"
+                  onChange={e => onSetNewDucky(e)}
                 />
                 <TextField
                   variant="outlined"
@@ -74,7 +94,7 @@ const Login = ({onLogin, onSetCredentials}) => {
                   label="Password"
                   type="password"
                   autoComplete="current-password"
-                  onChange={e => onSetCredentials(e)}
+                  onChange={e => onSetNewDucky(e)}
                 />
               </form>
 
@@ -86,9 +106,8 @@ const Login = ({onLogin, onSetCredentials}) => {
                 variant="contained"
                 color="primary"
                 className={classes.buttonStyle}
-                style={{maxWidth: '7rem', maxHeight: '2rem', minWidth: '7rem', minHeight: '2rem'}}
               >
-                Sign up
+                Home
               </Button>
             </Paper>
           </Grid>
@@ -98,10 +117,9 @@ const Login = ({onLogin, onSetCredentials}) => {
                 variant="contained"
                 color="primary"
                 className={classes.buttonStyle}
-                onClick={() => onLogin()}
-                style={{maxWidth: '7rem', maxHeight: '2rem', minWidth: '7rem', minHeight: '2rem'}}
+                onClick={() => onSignup()}
               >
-                log in
+                Sign up
               </Button>
             </Paper>
           </Grid>
@@ -111,5 +129,5 @@ const Login = ({onLogin, onSetCredentials}) => {
   );
 }
 
-export default Login;
+export default Signup;
 

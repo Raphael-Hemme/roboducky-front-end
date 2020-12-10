@@ -1,13 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+
 import ListItemText from '@material-ui/core/ListItemText';
 
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
 
 const StyledMenu = withStyles({
   paper: {
@@ -69,8 +68,9 @@ const EditMenu = () => {
         variant="contained"
         color="primary"
         onClick={handleClick}
+        style={{maxWidth: '7rem', maxHeight: '2rem', minWidth: '7rem', minHeight: '2rem'}}
       >
-        options
+        Remember
       </Button>
       <StyledMenu
         id="customized-menu"
@@ -78,18 +78,17 @@ const EditMenu = () => {
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
+
       >
-        <StyledMenuItem>
-          <ListItemIcon>
-            <SendIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Add Solution" />
+        <StyledMenuItem component={Link} to="/previous-conversations">
+          
+            <ListItemText primary="Remember All" />
+
         </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small/" />
-          </ListItemIcon>
-          <ListItemText primary="Add Tags" />
+        <StyledMenuItem component={Link} to="/search-by-tags">
+
+          <ListItemText primary="Search By Tags"/> 
+
         </StyledMenuItem>
       </StyledMenu>
     </div>
