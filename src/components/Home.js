@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 
-import {userContext} from '../utils/auth'
+import { userContext } from '../utils/auth'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -41,6 +41,9 @@ const Home = ({currentDucky, onCurrentDucky, onLogout}) => {
   const classes = useStyles();
 
   useEffect(() => {
+    /*const userContextVar = userContext() // changed from just calling it like a function and then using it as if it returned apromise to this way of passing it to a new variable. Have to think through how to proceed from here. But not with .then  ...
+    console.log("trying to get to the userContext in Home: ", userContextVar.data.userName)
+    onCurrentDucky(userContextVar)*/
     userContext()
     .then(res => onCurrentDucky(res.data))
     .then(res => console.log(res.data))

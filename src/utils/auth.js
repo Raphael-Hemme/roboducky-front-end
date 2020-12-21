@@ -58,7 +58,6 @@ const userContext = async () => {
   setAuthHeaders()
   try {
     const data = await axios.get('/auth/me')
-    
     console.log("withinuserContext", {data})
     return data
   } catch (error) {
@@ -96,8 +95,10 @@ const signUp = async ({userName, userEmail, duckyName, password}) => {
       duckyName,
       password
     }
-    await axios.post('/duckies', data)
-    const token = data.headers['x-authorization-token'];
+    const newDuckyData = await axios.post('/duckies', data)
+
+    const token = newDuckyData.headers['x-authorization-token'];
+    console.log({"newDuckyToken": token});
     if (token) {
     //  console.log(token)
       Cookies.set(`${APP_NAME}-auth-token`, token);
