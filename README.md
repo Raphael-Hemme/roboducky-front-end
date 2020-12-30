@@ -13,7 +13,7 @@ This is where roboducky comes in.
 Roboducky will listen to your issues and struggles as patiently as its rubbery relatives but it also can remember previous conversations and therefore may be able to help you out when encountering similar issues.
   
 ## CURRENT FEATURES 
-### (combined with the backend):  
+#### (combined with the backend):  
 
 * Registration of a new account with a personalized roboducky
 * Login
@@ -27,7 +27,7 @@ Roboducky will listen to your issues and struggles as patiently as its rubbery r
   * Conversations with specific tags
   
 ## PLANNED FEATURES
-### (combined with the backend):
+#### (combined with the backend):
 
 * New conversation data including:
   * **Code snippets**,
@@ -36,8 +36,10 @@ Roboducky will listen to your issues and struggles as patiently as its rubbery r
 * Voice to text entry, so that you can actually "talk" to roboducky via the web speech api
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API
   
-## TECH-STACK:
+## CURRENT TECH-STACK:
+  
+| Frontend      | Backend               |
+| ---           | ---                   |
+| React.js      | Node.js & Express     |
+| Material-UI   | MongoDB & Mongoose    |
 
-* JavaScript
-* React.js
-* Material-UI
