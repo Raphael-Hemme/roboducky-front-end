@@ -58,7 +58,7 @@ const userContext = async () => {
   setAuthHeaders()
   try {
     const data = await axios.get('/auth/me')
-    console.log("withinuserContext", {data})
+    console.log("Within userContext", {data})
     return data
   } catch (error) {
     console.log(error.message)

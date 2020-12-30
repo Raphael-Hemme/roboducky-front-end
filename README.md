@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# ROBODUCKY - FRONTEND
+This is the fronend repository of roboducky.
+A "rubber duck" that listens patiently AND actually remembers your previous conversations.
+  
+## INTRODUCTION
+----
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Roboducky is a web application that facilitates the continuation and transformation of a longstanding tradition in software development. Developers often times find themselves in challenging situations where they have to figure out some logic or problem with their code but do not immediately come up with a good solution. Talking to another person might help in such a situation but sometimes nobody is there to listen or you might want to spare your co-workes, family or friends the time to listen to you just in order for you to come up with a solution on your own after a while.
+In such cases developers have long enjoyed talking to a rubber duck on their desk that would patiently listen to them no matter what time of day or night.
+During their conversations with their rubber ducks many issues and troubles have been talked through and those rubbery companions facilitated breakthrough ideas and solutions.
+But unfortunately those patient rubber ducks could be described as highly prone to intense amnesia.
+This is where roboducky comes in.
+Roboducky will listen to your issues and struggles as patiently as its rubbery relatives but it also can remember previous conversations and therefore may be able to help you out when encountering similar issues.
+  
+## CURRENT FEATURES 
+### (combined with the backend):  
+----
+* Registration of a new account with a personalized roboducky
+* Login
+* Creating a new conversation including:
+  * **Description** of your issue (your monolog),
+  * **Solution** for that issue if roboducky's patient listening enabled you to come up with one already,
+  * **Mood**
+  * **Tags** (manually entered tags)
+* Retrieving past conversations:
+  * All personal conversations,
+  * Conversations with specific tags
+  
+## PLANNED FEATURES
+### (combined with the backend):
+----
+* New conversation data including:
+  * **Code snippets**,
+  * **Auto keywords** suggested for you to use as tags by roboducky
+* Automatically suggesting similar conversations from the past if - and only if - you ask for help.
+* Voice to text entry, so that you can actually "talk" to roboducky via the web speech api
+https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API
+  
+## TECH-STACK:
+---- 
+* JavaScript
+* React.js
+* Material-UI
